@@ -12,6 +12,6 @@ import java.net.UnknownHostException;
 public class HomeController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity index() throws UnknownHostException {
-        return ResponseEntity.ok("Hello Spring Boot! From: " + InetAddress.getLocalHost().getHostName());
+        return ResponseEntity.ok("Hello kubernetes! From: " + InetAddress.getLocalHost().getHostName());
     }
 }
