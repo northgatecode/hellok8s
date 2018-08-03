@@ -1,0 +1,18 @@
+steps:
+- name: 'maven:3.5.4-jdk-8'
+  args: ['bash', './api/build.sh']
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/api:$REVISION_ID',
+          './api' ]
+- name: 'gcr.io/cloud-builders/docker'
+  args: ["push", "gcr.io/$PROJECT_ID/api:$REVISION_ID"]
+# - name: 'gcr.io/cloud-builders/kubectl'
+#   args:
+#   - set
+#   - image
+#   - 'deployment/api-deployment'
+#   - 'api=gcr.io/$PROJECT_ID/api:$REVISION_ID'
+#   env:
+#   - 'CLOUDSDK_COMPUTE_ZONE=us-west1-c'
+#   - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster'
+# images: ['gcr.io/$PROJECT_ID/api:$REVISION_ID']
